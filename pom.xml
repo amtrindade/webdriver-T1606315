@@ -1,0 +1,25 @@
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.webdriver</groupId>
+  <artifactId>curso-webdriver-08-25</artifactId>
+  <version>1.0.0</version>
+  <name>CursoWebDriver-08-25</name>
+  
+  <dependencies>
+  
+  	<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-java</artifactId>
+	    <version>4.35.0</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-api</artifactId>
+	    <version>5.13.4</version>
+	    <scope>test</scope>
+	</dependency>		
+  
+  </dependencies>  
+  
+</project>
