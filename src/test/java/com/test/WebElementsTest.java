@@ -45,5 +45,17 @@ public class WebElementsTest {
 		assertEquals("Hello world!", textFieldName.getAttribute("value"));		
 	}
 	
+	@Test
+	public void testEnableDisableTextField() {
+		
+		WebElement txtBox1 = driver.findElement(By.name("txtbox1"));
+		WebElement txtBox2 = driver.findElement(By.name("txtbox2"));
+		
+		txtBox1.sendKeys("Antonio");
+		
+		assertTrue(txtBox1.isEnabled());
+		assertFalse(txtBox2.isEnabled());
+	}
+	
 	
 }
