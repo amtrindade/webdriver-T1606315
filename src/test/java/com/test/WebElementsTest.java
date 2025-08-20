@@ -1,6 +1,8 @@
 package com.test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,6 +57,24 @@ public class WebElementsTest {
 		
 		assertTrue(txtBox1.isEnabled());
 		assertFalse(txtBox2.isEnabled());
+	}
+	
+	@Test
+	public void testRadioButton() {
+		List<WebElement> listRadio = driver.findElements(By.name("radioGroup1"));
+		
+		assertEquals(4, listRadio.size());
+		
+		for (WebElement element : listRadio) {
+			if (element.getAttribute("value").equals("Radio 3")) {
+				element.click();
+			}
+		}
+		
+		assertTrue(listRadio.get(2).isSelected());
+		assertFalse(listRadio.get(0).isSelected());
+		assertFalse(listRadio.get(1).isSelected());
+		assertFalse(listRadio.get(3).isSelected());
 	}
 	
 	
