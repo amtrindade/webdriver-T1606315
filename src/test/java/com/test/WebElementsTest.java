@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
 
 public class WebElementsTest {
 	public WebDriver driver;
@@ -98,6 +100,22 @@ public class WebElementsTest {
 		assertTrue(listCheck.get(3).isSelected(), "O check 4 não foi validado!");
 		assertFalse(listCheck.get(0).isSelected());
 		assertFalse(listCheck.get(1).isSelected());	
+	}
+	
+	@Test
+	public void testSelectSingle() throws InterruptedException {
+		
+		WebElement dropDownList = driver.findElement(By.name("dropdownlist"));	
+		Select selectSingle = new Select(dropDownList);
+		
+		selectSingle.selectByVisibleText("Item 5");
+		Thread.sleep(1000);
+		selectSingle.selectByVisibleText("Item 6");
+		Thread.sleep(1000);
+		selectSingle.selectByVisibleText("Item 7");
+		
+		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
+		
 	}
 		
 }
