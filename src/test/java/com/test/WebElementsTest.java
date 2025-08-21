@@ -44,7 +44,7 @@ public class WebElementsTest {
 		textFieldName.sendKeys("Hello world!");
 		
 		//Passo 3) Valida o resultado buscando o valor que está dentro do textfield
-		assertEquals("Hello world!", textFieldName.getAttribute("value"));		
+		assertEquals("Hello world!", textFieldName.getAttribute("value"), "O texto está diferente!");		
 	}
 	
 	@Test
@@ -77,5 +77,27 @@ public class WebElementsTest {
 		assertFalse(listRadio.get(3).isSelected());
 	}
 	
-	
+	@Test
+	public void testCheckBoxes() {
+		
+		List<WebElement> listCheck = driver.findElements(By.name("chkbox"));
+		
+		assertEquals(4, listCheck.size());
+		
+		for (WebElement checkBox : listCheck) {
+			if ((checkBox.getAttribute("value").equals("Check 3"))
+					|| (checkBox.getAttribute("value").equals("Check 4"))) {
+				checkBox.click();
+			}			
+		}
+		
+//		listCheck.get(2).click();
+//		listCheck.get(3).click();
+		
+		assertTrue(listCheck.get(2).isSelected(), "O check 3 não foi validado!");
+		assertTrue(listCheck.get(3).isSelected(), "O check 4 não foi validado!");
+		assertFalse(listCheck.get(0).isSelected());
+		assertFalse(listCheck.get(1).isSelected());	
+	}
+		
 }
