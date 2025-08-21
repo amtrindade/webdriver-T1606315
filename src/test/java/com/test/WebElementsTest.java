@@ -108,14 +108,39 @@ public class WebElementsTest {
 		WebElement dropDownList = driver.findElement(By.name("dropdownlist"));	
 		Select selectSingle = new Select(dropDownList);
 		
-		selectSingle.selectByVisibleText("Item 5");
-		Thread.sleep(1000);
-		selectSingle.selectByVisibleText("Item 6");
-		Thread.sleep(1000);
+		selectSingle.selectByVisibleText("Item 5");		
+		selectSingle.selectByVisibleText("Item 6");		
 		selectSingle.selectByVisibleText("Item 7");
 		
 		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
 		
+	}
+	
+	@Test
+	public void testSelectMulti() {
+		WebElement dropDownMulti = driver.findElement(By.name("multiselectdropdown"));
+		Select selectMulti = new Select(dropDownMulti);
+		
+		selectMulti.selectByValue("item1");
+		
+		selectMulti.selectByValue("item5");
+		selectMulti.selectByValue("item8");
+		selectMulti.selectByValue("item9");
+						
+		selectMulti.deselectByIndex(0);
+
+		List<WebElement> listSelect = selectMulti.getAllSelectedOptions();
+		
+		assertEquals(3, listSelect.size());
+		
+		assertEquals("Item 5", listSelect.get(0).getText());
+		assertEquals("Item 8", listSelect.get(1).getText());
+		assertEquals("Item 9", listSelect.get(2).getText());
+		
+		selectMulti.deselectAll();
+		
+		listSelect = selectMulti.getAllSelectedOptions();
+		assertEquals(0, listSelect.size());
 	}
 		
 }
