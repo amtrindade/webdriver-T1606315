@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +29,7 @@ public class WebElementsTest {
 
 	@AfterEach
 	public void tearDown() throws Exception {
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		driver.quit();
 	}
 
@@ -156,5 +157,35 @@ public class WebElementsTest {
 		//Sai do iframe
 		driver.switchTo().defaultContent();
 	}
+	
+	@Test
+	public void testAlert() throws InterruptedException {
+		
+		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		btnAlert.click();
+		
+		Alert alert = driver.switchTo().alert();
+		assertEquals("Eu sou um alerta!", alert.getText());
+		
+		alert.accept();
+		
+	}
+	
+	@Test
+	public void testConfirm() {
+		WebElement btnConfirm = driver.findElement(By.name("confirmbtn"));
+		btnConfirm.click();
+		
+		Alert confirm = driver.switchTo().alert();
+		assertEquals("Pressione um botão!", confirm.getText());
+		confirm.dismiss();
+		
+		btnConfirm.click();
+		confirm = driver.switchTo().alert();
+		assertEquals("Pressione um botão!", confirm.getText());
+		confirm.accept();
+		
+	}
+	
 		
 }
