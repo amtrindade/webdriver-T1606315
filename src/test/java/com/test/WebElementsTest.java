@@ -142,5 +142,19 @@ public class WebElementsTest {
 		listSelect = selectMulti.getAllSelectedOptions();
 		assertEquals(0, listSelect.size());
 	}
+	
+	@Test
+	public void testIFrame() {
+		
+		//Entra no iframe
+		driver.switchTo().frame(0);
+		
+		WebElement tfIframe = driver.findElement(By.id("tfiframe"));
+		tfIframe.sendKeys("Curso WebDriver");
+		assertEquals("Curso WebDriver", tfIframe.getAttribute("value"));
+		
+		//Sai do iframe
+		driver.switchTo().defaultContent();
+	}
 		
 }
