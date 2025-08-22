@@ -187,5 +187,45 @@ public class WebElementsTest {
 		
 	}
 	
+	@Test
+	public void testPrompt() {
+		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		btnPrompt.click();
+		
+		Alert prompt1 = driver.switchTo().alert();
+		prompt1.sendKeys("2025");
+		prompt1.accept();
+		
+		Alert prompt2 = driver.switchTo().alert();
+		assertEquals("O ano é 2025?", prompt2.getText());
+		prompt2.accept();
+		
+		Alert prompt3 = driver.switchTo().alert();
+		assertEquals("Feito!", prompt3.getText());
+		prompt3.accept();
+		
+	}
+	
+	@Test
+	public void testPromptDismiss() {
+		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		btnPrompt.click();
+		
+		Alert prompt1 = driver.switchTo().alert();
+		prompt1.sendKeys("2025");
+		prompt1.accept();
+		
+		Alert prompt2 = driver.switchTo().alert();
+		assertEquals("O ano é 2025?", prompt2.getText());
+		prompt2.dismiss();
+		
+		Alert prompt3 = driver.switchTo().alert();
+		assertEquals("Nada feito!", prompt3.getText());
+		prompt3.dismiss();
+		
+	}
+	
+	
+	
 		
 }
