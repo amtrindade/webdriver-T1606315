@@ -208,7 +208,8 @@ public class WebElementsTest {
 		
 	}
 	
-	
+	@Disabled("BUG encontrado com xytz 25/08/25")
+	@Test
 	public void testPromptDismiss() {
 		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
 		btnPrompt.click();
