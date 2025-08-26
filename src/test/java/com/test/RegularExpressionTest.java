@@ -46,5 +46,18 @@ public class RegularExpressionTest {
 		
 		assertTrue(cpfGerado.matches("^[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}$"));
 	}
+	
+	@Test
+	public void testValidationCpfWithoutPoint() {
+		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
+		btnGerar.click();
+		
+		WebElement tfCpf = driver.findElement(By.id("numero"));
+		String cpfGerado = tfCpf.getAttribute("value");
+		
+		System.out.println(cpfGerado);
+		
+		assertTrue(cpfGerado.matches("^[0-9]{11}$"));		
+	}
 
 }
