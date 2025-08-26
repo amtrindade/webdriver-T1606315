@@ -39,13 +39,23 @@ public class NavigationTabsTest {
 		WebElement linkDragAndDrop = driver.findElement(By.linkText("Drag and Drop"));
 		linkDragAndDrop.click();
 		
+		WebElement linkJQuery = driver.findElement(By.linkText("Drag and Drop JQuery"));
+		linkJQuery.click();
+		
 		//Criei array com as janelas que estão abertas		
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		
 		//Navegação pelas tabs
 		driver.switchTo().window(tabs.get(1));
 		
 		Thread.sleep(5000);
+		assertEquals("jQuery UI Droppable - Default functionality", driver.getTitle());
+		
+		driver.switchTo().window(tabs.get(2));		
 		assertEquals("Mootools Drag and Drop Example", driver.getTitle());
+		
+		driver.switchTo().window(tabs.get(0));
+		assertEquals("Treino Automação de Testes", driver.getTitle());
 		
 		
 	}
