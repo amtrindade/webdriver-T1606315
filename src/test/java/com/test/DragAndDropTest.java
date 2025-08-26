@@ -33,7 +33,7 @@ public class DragAndDropTest {
 	}
 	
 	@Test
-	public void testDragAndDrop() {
+	public void testDragAndDrop() throws Exception {
 		
 		WebElement divOrigin = driver.findElement(By.id("draggable"));
 		assertEquals("Drag me to my target", divOrigin.getText());
@@ -43,7 +43,10 @@ public class DragAndDropTest {
 		
 		new Actions(driver).dragAndDrop(divOrigin, divDestiny).perform();
 		
-		assertEquals("Dropped!", divDestiny.getText());				
+		assertEquals("Dropped!", divDestiny.getText());		
+		
+		Thread.sleep(3000);
+		new Actions(driver).dragAndDropBy(divOrigin, 200, 20).perform();
 	}
 
 }
