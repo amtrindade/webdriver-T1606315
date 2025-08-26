@@ -1,9 +1,8 @@
 package com.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.Duration;
-import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NavigationTabsTest {
+public class NavigationCacheTest {
 	
 	public WebDriver driver;
 
@@ -31,34 +30,29 @@ public class NavigationTabsTest {
 		Thread.sleep(3000);
 		driver.quit();
 	}
-	
+
 	@Test
-	public void testNavigationTabs() throws InterruptedException {
-		
+	public void testNavigationCache() {
 		assertEquals("Treino Automação de Testes", driver.getTitle());
 		
-		WebElement linkDragAndDrop = driver.findElement(By.linkText("Drag and Drop"));
-		linkDragAndDrop.click();
+		WebElement linkCalculadora = driver.findElement(By.linkText("Calculadora"));
+		linkCalculadora.click();
 		
-		WebElement linkJQuery = driver.findElement(By.linkText("Drag and Drop JQuery"));
-		linkJQuery.click();
+		assertEquals("Desafio Automação Cálculos", driver.getTitle());
 		
-		//Criei array com as janelas que estão abertas		
-		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		WebElement linkLocalizarTable = driver.findElement(By.linkText("Localizar Table"));
+		linkLocalizarTable.click();
 		
-		//Navegação pelas tabs
-		driver.switchTo().window(tabs.get(1));
+		assertEquals("Trabalhando com tables", driver.getTitle());
 		
-		Thread.sleep(5000);
-		assertEquals("jQuery UI Droppable - Default functionality", driver.getTitle());
-		
-		driver.switchTo().window(tabs.get(2));		
-		assertEquals("Mootools Drag and Drop Example", driver.getTitle());
-		
-		driver.switchTo().window(tabs.get(0));
+		driver.navigate().back();
+		assertEquals("Desafio Automação Cálculos", driver.getTitle());
+		driver.navigate().back();
 		assertEquals("Treino Automação de Testes", driver.getTitle());
-		
-		
+		driver.navigate().forward();
+		assertEquals("Desafio Automação Cálculos", driver.getTitle());
+		driver.navigate().forward();
+		assertEquals("Trabalhando com tables", driver.getTitle());
 	}
 
 }

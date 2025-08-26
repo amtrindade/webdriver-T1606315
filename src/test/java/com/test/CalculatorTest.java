@@ -20,7 +20,8 @@ public class CalculatorTest {
 	public void setUp() throws Exception {		
 		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
 		driver = new FirefoxDriver();
-		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");			
+		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");	
+		
 	}
 
 	@AfterEach
