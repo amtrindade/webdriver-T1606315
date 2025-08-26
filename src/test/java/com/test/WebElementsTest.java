@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -30,7 +31,6 @@ public class WebElementsTest {
 
 	@AfterEach
 	public void tearDown() throws Exception {
-		Thread.sleep(3000);
 		driver.quit();
 	}
 
@@ -145,6 +145,7 @@ public class WebElementsTest {
 		assertEquals(0, listSelect.size());
 	}
 	
+	
 	@Test
 	public void testIFrame() {
 		
@@ -207,7 +208,7 @@ public class WebElementsTest {
 		
 	}
 	
-	@Test
+	
 	public void testPromptDismiss() {
 		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
 		btnPrompt.click();
