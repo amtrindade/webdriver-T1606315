@@ -2,6 +2,7 @@ package com.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
 import java.util.Random;
 
 import org.junit.jupiter.api.AfterEach;
@@ -11,15 +12,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CalculatorTest {
 
 	public WebDriver driver;
+	public WebDriverWait wait;
 
 	@BeforeEach
 	public void setUp() throws Exception {		
 		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
 		driver = new FirefoxDriver();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+				
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		
 		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");	
 		
 	}
@@ -42,8 +50,8 @@ public class CalculatorTest {
 		
 		btnSomar.click();
 		
-		//TODO corrigir espera pelo texto do elemento
-		Thread.sleep(3000);
+		//espera explícita pelo texto exibido no textfield		
+		wait.until(ExpectedConditions.textToBePresentInElementValue(tfTotal, "13"));
 		
 		assertEquals("13", tfTotal.getAttribute("value"));		
 	}
@@ -73,8 +81,8 @@ public class CalculatorTest {
 		
 		btnSomar.click();
 		
-		//TODO corrigir espera pelo texto do elemento
-		Thread.sleep(3000);
+		//espera explícita pelo texto exibido no textfield
+		wait.until(ExpectedConditions.textToBePresentInElementValue(tfTotal, valorTotal.toString()));
 		
 		assertEquals(valorTotal.toString(), tfTotal.getAttribute("value"));			
 		
