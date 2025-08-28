@@ -32,15 +32,27 @@ public class SelectorTest {
 	}
 	
 	@Test
-	public void testXPathCheckBox() {
-		
+	public void testXPathCheckBox() {		
 		String name = "Fulano";
-		
 		WebElement chkBox = driver.findElement(By.xpath("//*[contains(text(),'"+ name +"')]/../td/input"));
 		chkBox.click();
 		
-		assertTrue(chkBox.isSelected());
+		assertTrue(chkBox.isSelected());	
+	}
+	
+	@Test
+	public void testNomeParaReserva() {
+		String email = "antoniosilva@gmail.com";
+		
+		WebElement colunaNome = driver.findElement(By.xpath("//*[.='"+email+"']/../td[1]"));
+		String name = colunaNome.getText();		
+		WebElement tfReserva = driver.findElement(By.xpath("//input[@id='txt01']"));
+		tfReserva.sendKeys(name);
+		
+		assertEquals("Antônio Silva", tfReserva.getAttribute("value"));
 		
 	}
+	
+	
 
 }
