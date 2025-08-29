@@ -1,58 +1,44 @@
 package com.test;
 
-import java.time.Duration;
+import static com.core.DriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NavigationCacheTest {
+import com.core.BaseTest;;
+
+public class NavigationCacheTest extends BaseTest{
 	
-	public WebDriver driver;
-
 	@BeforeEach
-	public void setUp() throws Exception {		
-		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		
-		driver.get("https://antoniotrindade.com.br/treinoautomacao");		
-	}
-
-	@AfterEach
-	public void tearDown() throws Exception {
-		Thread.sleep(3000);
-		driver.quit();
+	public void setUp() throws Exception {				
+		getDriver().get("https://antoniotrindade.com.br/treinoautomacao");		
 	}
 
 	@Test
 	public void testNavigationCache() {
-		assertEquals("Treino Automação de Testes", driver.getTitle());
+		assertEquals("Treino Automação de Testes", getDriver().getTitle());
 		
-		WebElement linkCalculadora = driver.findElement(By.linkText("Calculadora"));
+		WebElement linkCalculadora = getDriver().findElement(By.linkText("Calculadora"));
 		linkCalculadora.click();
 		
-		assertEquals("Desafio Automação Cálculos", driver.getTitle());
+		assertEquals("Desafio Automação Cálculos", getDriver().getTitle());
 		
-		WebElement linkLocalizarTable = driver.findElement(By.linkText("Localizar Table"));
+		WebElement linkLocalizarTable = getDriver().findElement(By.linkText("Localizar Table"));
 		linkLocalizarTable.click();
 		
-		assertEquals("Trabalhando com tables", driver.getTitle());
+		assertEquals("Trabalhando com tables", getDriver().getTitle());
 		
-		driver.navigate().back();
-		assertEquals("Desafio Automação Cálculos", driver.getTitle());
-		driver.navigate().back();
-		assertEquals("Treino Automação de Testes", driver.getTitle());
-		driver.navigate().forward();
-		assertEquals("Desafio Automação Cálculos", driver.getTitle());
-		driver.navigate().forward();
-		assertEquals("Trabalhando com tables", driver.getTitle());
+		getDriver().navigate().back();
+		assertEquals("Desafio Automação Cálculos", getDriver().getTitle());
+		getDriver().navigate().back();
+		assertEquals("Treino Automação de Testes", getDriver().getTitle());
+		getDriver().navigate().forward();
+		assertEquals("Desafio Automação Cálculos", getDriver().getTitle());
+		getDriver().navigate().forward();
+		assertEquals("Trabalhando com tables", getDriver().getTitle());
 	}
 
 }

@@ -1,49 +1,38 @@
 package com.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.core.DriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 import java.util.Random;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CalculatorTest {
+import com.core.BaseTest;
 
-	public WebDriver driver;
+public class CalculatorTest extends BaseTest{
+
 	public WebDriverWait wait;
 
 	@BeforeEach
 	public void setUp() throws Exception {		
-		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
-		driver = new FirefoxDriver();
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-				
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		
-		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");	
-		
-	}
-
-	@AfterEach
-	public void tearDown() throws Exception {
-		driver.quit();
+							
+		getDriver().get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");	
+		wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 	}
 	
 	@Test
 	public void testSoma() throws InterruptedException {
 		
-		WebElement tfNumber1 = driver.findElement(By.id("number1"));
-		WebElement tfNumber2 = driver.findElement(By.id("number2"));
-		WebElement tfTotal = driver.findElement(By.id("total"));
-		WebElement btnSomar = driver.findElement(By.id("somar"));
+		WebElement tfNumber1 = getDriver().findElement(By.id("number1"));
+		WebElement tfNumber2 = getDriver().findElement(By.id("number2"));
+		WebElement tfTotal = getDriver().findElement(By.id("total"));
+		WebElement btnSomar = getDriver().findElement(By.id("somar"));
 		
 		tfNumber1.sendKeys("8");
 		tfNumber2.sendKeys("5");
@@ -68,10 +57,10 @@ public class CalculatorTest {
 		Integer valor1 = random.nextInt(valorMaximo) + valorMinimo;
 		Integer valor2 = random.nextInt(valorMaximo) + valorMinimo;
 		
-		WebElement tfNumber1 = driver.findElement(By.id("number1"));
-		WebElement tfNumber2 = driver.findElement(By.id("number2"));
-		WebElement tfTotal = driver.findElement(By.id("total"));
-		WebElement btnSomar = driver.findElement(By.id("somar"));
+		WebElement tfNumber1 = getDriver().findElement(By.id("number1"));
+		WebElement tfNumber2 = getDriver().findElement(By.id("number2"));
+		WebElement tfTotal = getDriver().findElement(By.id("total"));
+		WebElement btnSomar = getDriver().findElement(By.id("somar"));
 		
 		//Operação matemática de soma
 		Integer valorTotal = valor1 + valor2;

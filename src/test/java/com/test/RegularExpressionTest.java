@@ -1,45 +1,32 @@
 package com.test;
 
-import java.time.Duration;
+import static com.core.DriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.core.BaseTest;
 
-public class RegularExpressionTest {
+public class RegularExpressionTest extends BaseTest{
 	
-	public WebDriver driver;
-
 	@BeforeEach
-	public void setUp() throws Exception {		
-		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		
-		driver.get("https://www.geradordecpf.org/");		
+	public void setUp() throws Exception {					
+		getDriver().get("https://www.geradordecpf.org/");		
 	}
 
-	@AfterEach
-	public void tearDown() throws Exception {
-		Thread.sleep(3000);
-		driver.quit();
-	}
 	
 	@Test
 	public void testValidationCPFWithPoint() {
-		WebElement cbPontos = driver.findElement(By.id("cbPontos"));
+		WebElement cbPontos = getDriver().findElement(By.id("cbPontos"));
 		cbPontos.click();
 		
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
+		WebElement btnGerar = getDriver().findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();
 		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
+		WebElement tfCpf = getDriver().findElement(By.id("numero"));
 		String cpfGerado = tfCpf.getAttribute("value");
 		
 		System.out.println(cpfGerado);
@@ -49,10 +36,10 @@ public class RegularExpressionTest {
 	
 	@Test
 	public void testValidationCpfWithoutPoint() {
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
+		WebElement btnGerar = getDriver().findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();
 		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
+		WebElement tfCpf = getDriver().findElement(By.id("numero"));
 		String cpfGerado = tfCpf.getAttribute("value");
 		
 		System.out.println(cpfGerado);
