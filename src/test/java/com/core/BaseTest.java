@@ -2,7 +2,7 @@ package com.core;
 
 import org.junit.jupiter.api.AfterEach;
 
-public class BaseTest {
+public abstract class BaseTest {
 	
 	@AfterEach
 	public void tearDown() {
