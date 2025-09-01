@@ -12,7 +12,8 @@ public class DriverFactory {
 	
 	public static WebDriver getDriver() {
 		
-		String browser = "chrome";
+		//"chrome/firefox"
+		String browser = GlobalProperty.getProperty("webdriver.browser");
 		
 		if (driver == null) {
 			
