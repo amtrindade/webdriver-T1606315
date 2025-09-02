@@ -16,8 +16,7 @@ public class MainBSPage {
 		WebElement lineCoreJava = getDriver()
 				.findElement(By.xpath("//td[contains(text(),'"+ bookDescription +"')]/..//input"));
 		lineCoreJava.sendKeys(quantity);
-		return this;
-		
+		return this;	
 	}
 	
 	public String getTotalValue() {
