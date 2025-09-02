@@ -34,5 +34,11 @@ public class LoginBSPage {
 		WebElement divError = getDriver().findElement(By.id("errorMessage"));
 		return divError.getText();
 	}
+	
+	public MainBSPage clickLogarValid() {
+		WebElement btnLogar = getDriver().findElement(By.xpath("//input[@value='Login']"));
+		btnLogar.click();
+		return new MainBSPage();
+	}
 
 }

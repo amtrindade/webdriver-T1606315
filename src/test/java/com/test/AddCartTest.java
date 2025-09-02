@@ -1,15 +1,14 @@
 package com.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.core.BaseTest;
 import com.page.LoginBSPage;
 import com.page.MainBSPage;
 
-public class LoginBSTest extends BaseTest{
+public class AddCartTest extends BaseTest{
 	
 	private LoginBSPage loginPage;
 	private MainBSPage mainPage;
@@ -18,25 +17,23 @@ public class LoginBSTest extends BaseTest{
 	public void setUp() {
 		loginPage = new LoginBSPage();		
 		loginPage.open("http://sahitest.com/demo/training/login.htm");
-	}
-	
-	@Test
-	public void testLoginInvalid() {						
-		loginPage.inputUser("test");
-		loginPage.inputPassword("wrongpassword");
-		loginPage.clickLogarInvalid();
 		
-		assertEquals("Invalid username or password", loginPage.getMessageError());	
-	}	
-	
-	@Test
-	public void testLoginValid() {
 		loginPage.inputUser("test");
 		loginPage.inputPassword("secret");
 		mainPage = loginPage.clickLogarValid();
+	}
+	
+	@Test
+	public void testAddProductsToCart() {
 		
-		assertTrue(mainPage.isUserLogged());
+		mainPage.inputQuantityBook("2", "Core Java");
+		mainPage.inputQuantityBook("3", "Ruby for Rails");
+		mainPage.inputQuantityBook("4", "Python Cookbook");
+		mainPage.addCart();
+		
+		assertEquals("2600", mainPage.getTotalValue());
 		
 	}
+	
 
 }
