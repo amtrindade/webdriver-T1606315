@@ -22,14 +22,10 @@ public class RegisterBBTest extends BaseTest{
 		registerPage.inputName("TargetTrust");
 		registerPage.inputPassword("123");
 		registerPage.inputPasswordConfirmation("123");
-		Thread.sleep(3000);
 		registerPage.clickToggleSaldo();
 		registerPage.clickCadastrar();
 		
 		assertTrue(registerPage.getPartialMessage("foi criada com sucesso"));
-		
-		//TODO: CLICAR FECHAR E LOGAR
-		
 	}
 
 }
