@@ -13,7 +13,7 @@ Certifique-se de ter os seguintes itens instalados em sua máquina:
 
 1. **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/cursowebdriver.git
+    git clone https://github.com/amtrindade/webdriver-T1606315
     cd cursowebdriver
     ```
 
